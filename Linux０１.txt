@@ -1,0 +1,45 @@
+sudo vi /var/named/domainweb135.local.zone
+メールエクスチェンジの設定等
+named-checkzone domainweb135.local. /var/named/domainweb135.jp.zone
+OKがでたら成功
+(IPアドレスをメインPCに設定してるので違ったら変える）
+systemctl is-enabled named-chroot
+DNSの確認
+sudo systemctl enable named-chroot
+disabled ～ enabled に変える
+sudo vi /var/named/domainweb135.local.zone
+何かを追加した
+ host vhost2.domainweb135.local 192.168.2.135
+ 自分自身の確認
+ systemctl status named-chroot
+ 保存
+ sudo firewall-cmd --runtime-to-permanent
+ 
+1. 講師のマシン
+DNS キャッシュサーバー
+2. 受講生 A のマシン
+domain01.jp ドメインを受け持つ DNS コンテンツサーバー
+3. 受講生 B のマシン
+domain02.jp ドメインを受け持つ DNS コンテンツサーバー
+
+
+ rpm -q mariadb
+ ↑インストール確認(mariaDB）
+  dnf list installed | grep mariadb
+  List一覧
+  MariaDB動いてるか確認
+   systemctl status mariadb
+   rootで
+   systemctl start mariadb
+   動いてるか確認
+   systemctl is-enabled mariadb
+   動かす
+    systemctl enable mariadb
+    
+    mysql_secure_installation
+    全部Y
+    
+    
+    
+    
+   
